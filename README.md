@@ -34,6 +34,26 @@ After approval, the Editor asks which format you want: **markdown** (the source,
 
 The finished document is delivered in your chosen format with a numbered References section (Chicago notes style - superscript numerals in the text, no inline links), plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
 
+### Workflow
+
+```mermaid
+flowchart TD
+    A(["You: /press-up-submit<br>idea + word limit"]) --> B["Editor: commission"]
+    B --> C{"Publisher<br>approves brief?"}
+    C -- "no, amend" --> B
+    C -- "yes" --> D["Research<br>4-5 researchers in parallel<br>(one adversarial)"]
+    D --> E["Journalist drafts<br>every statement cited"]
+    E --> F{"Adversarial<br>review"}
+    F -- "revise (max 3 rounds)<br>follow-up research" --> E
+    F -- "accept" --> G["Copy edit<br>+ Artist diagrams"]
+    G --> H{"Publisher<br>approval"}
+    H -- "changes" --> E
+    H -- "approve" --> I["Render with Pandoc<br>md · HTML · DOCX · PDF"]
+    I --> J{"Typesetter<br>check"}
+    J -- "fix, re-render" --> I
+    J -- "correct" --> K(["Deliver artifact<br>+ editorial memo"])
+```
+
 ### Example
 
 You type:

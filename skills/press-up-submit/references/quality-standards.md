@@ -20,4 +20,6 @@ Non-negotiable standards applied at every gate. The Editor enforces these; every
 
 9. **Scope discipline.** The piece serves the commission. Interesting-but-off-topic material is cut, not kept.
 
-10. **The publisher's approval is final.** The user's approval is the last gate, and their change requests restart the loop through the newsroom. No piece is delivered as final without it.
+10. **The publisher's approval is final.** The user's approval is the last editorial gate, and their change requests restart the loop through the newsroom. No piece is delivered as final without it.
+
+11. **The rendered artifact must be correctly typeset.** The deliverable is checked in its rendered form - no clipped figures, no broken images, no orphaned headings, citations and figures intact - and re-rendered until the layout is right.

@@ -1,6 +1,6 @@
 # Press-Up
 
-A skills.sh installable skill that turns your agent into an editorial newsroom: an **Editor** (your agent) commissions a piece, a **Journalist** subagent directs a panel of four to five **Research** subagents (one always adversarial), drafts the article to your specified word count with a citation marker on every factual statement, then revises it against an **Adversarial Reviewer** that attacks unsourced claims, and finishes with a **Copy Editor** that commissions an **Artist** for figures and diagrams where a passage is better shown than told.
+A skills.sh installable skill that turns your agent into an editorial newsroom: an **Editor** (your agent) commissions a piece, a **Journalist** subagent directs a panel of four to five **Research** subagents (one always adversarial), drafts the article to your specified word count with a citation marker on every factual statement, then revises it against an **Adversarial Reviewer** that attacks unsourced claims, and finishes with a **Copy Editor** that commissions an **Artist** for diagrams where a passage is better shown than told. After you approve, the Editor renders the piece with **Pandoc** in your chosen format - markdown, HTML, DOCX, or PDF - and a **Typesetter** subagent checks and fixes the layout until the artifact is correctly typeset.
 
 ## Install
 
@@ -28,9 +28,11 @@ Invoke the skill as a slash command with the idea of the document and the word l
 
 > /press-up-submit The collapse of the European battery start-up Northvolt, 2,000 words
 
-The Editor will confirm the commission (subject, word count, audience, tone), then run the newsroom. Every piece goes through: commission → parallel research (evidence, history, voices, adversarial, stakes) → first draft with cited statements → adversarial review (uncited claims and weak evidence fail the draft) → revision loops (the Journalist sends follow-up questions back to the Researchers when the reviewer demands more) → copy edit and illustration (figures for passages better shown than told) → **publisher approval**. The piece comes to you for final sign-off; if you ask for changes, the Editor dispatches them to the Journalist and the loop runs again until you approve.
+The Editor will confirm the commission (subject, word count, audience, tone), then run the newsroom. Every piece goes through: commission → parallel research (evidence, history, voices, adversarial, stakes) → first draft with cited statements → adversarial review (uncited claims and weak evidence fail the draft) → revision loops (the Journalist sends follow-up questions back to the Researchers when the reviewer demands more) → copy edit and illustration (the Artist delivers diagrams as fenced Graphviz DOT) → **publisher approval**. The piece comes to you for final sign-off; if you ask for changes, the Editor dispatches them to the Journalist and the loop runs again until you approve.
 
-The finished article is delivered as a Markdown file with a numbered sources list, plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
+After approval, the Editor asks which format you want: **markdown** (the source, essentially untouched), **HTML**, **DOCX**, or **PDF**. The Typesetter renders it with Pandoc - the diagram source compiles to vector PDF for PDF output, SVG for HTML, high-resolution PNG for DOCX, and stays fenced in markdown - then inspects the rendered artifact and fixes any layout problems, re-rendering until it is correctly typeset.
+
+The finished document is delivered in your chosen format with a numbered sources list, plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
 
 ### Example
 
@@ -60,9 +62,13 @@ The newsroom then runs: five researchers work in parallel (one builds the strong
 >
 > Approve, or ask for changes?
 
-You approve, and the Editor writes `german-depaving.md` plus `figures/` and closes with the memo:
+You approve, and the Editor asks how you want it rendered:
 
-> **Editorial memo** — 1,512/1,500 words · 2 reviewer rounds · 1 change cycle · 23 sources · remaining uncertainty: none of the German studies isolate depaving from wider greening programs.
+> **Approved. How should I deliver it?** markdown (source, untouched) · HTML · DOCX · PDF
+
+You choose PDF. The Typesetter renders `german-depaving.md` through Pandoc with the diagram filter (vector PDF figures), rasterizes the pages and inspects them, fixes a clipped timeline, and re-renders. The Editor delivers and closes with the memo:
+
+> **Editorial memo** — `german-depaving.pdf` · 1,512/1,500 words · 2 reviewer rounds · 1 change cycle · 2 typesetting rounds · 23 sources · remaining uncertainty: none of the German studies isolate depaving from wider greening programs.
 
 ## Structure
 
@@ -78,13 +84,15 @@ skills/press-up-submit/
     ├── adversarial-researcher.md# Subagent prompt: the adversarial Researcher
     ├── critical-reviewer.md     # Subagent prompt: the Adversarial Reviewer
     ├── copy-editor.md           # Subagent prompt: the Copy Editor
-    └── artist.md                # Subagent prompt: the Artist
+    ├── artist.md                # Subagent prompt: the Artist (fenced DOT diagrams)
+    └── typesetter.md            # Subagent prompt: the Typesetter (Pandoc render + layout QA)
 ```
 
 ## Requirements
 
 - An agent harness with a subagent/task tool (Claude Code, opencode, Codex, etc.)
 - Internet access for the research phase
+- For the render phase: pandoc 3.x and Graphviz, plus a LaTeX engine (e.g. xelatex) for PDF output. DOCX output works out of the box; the Pandoc diagram filter (`pandoc-ext/diagram`) is fetched automatically when missing.
 
 ## License
 

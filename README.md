@@ -1,3 +1,5 @@
+<img src="pressup.jpg" alt="Press-Up" width="800">
+
 # Press-Up
 
 A skills.sh installable skill that turns your agent into an editorial newsroom: an **Editor** (your agent) commissions a piece, a **Journalist** subagent directs a panel of four to five **Research** subagents (one always adversarial), drafts the article to your specified word count with a numbered citation reference (Chicago notes style) on every factual statement, then revises it against an **Adversarial Reviewer** that attacks unsourced claims, and finishes with a **Copy Editor** that commissions an **Artist** for diagrams where a passage is better shown than told. After you approve, the Editor renders the piece with **Pandoc** in your chosen format - markdown, HTML, DOCX, or PDF - and a **Typesetter** subagent checks and fixes the layout until the artifact is correctly typeset.

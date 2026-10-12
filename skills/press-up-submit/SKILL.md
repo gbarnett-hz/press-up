@@ -63,7 +63,7 @@ If the verdict is revise:
 
 ### Phase 5 - Copy edit and illustration
 
-Spawn the **Copy Editor** subagent with the accepted draft and the commission (prompt: `references/copy-editor.md`). This is the only role allowed to rewrite prose freely. The Copy Editor also commissions the **Artist** for any passage better served by a figure or diagram - a timeline, a process, a relationship, numbers that trend (prompt: `references/artist.md`). If your harness does not allow a subagent to spawn subagents, run the Artist commissions yourself and hand the figures back to the Copy Editor to place.
+Spawn the **Copy Editor** subagent with the accepted draft and the commission (prompt: `references/copy-editor.md`). This is the only role allowed to rewrite prose freely. Its first job is to rewrite away AI-slop tells - tired words, formulaic sentence shapes, hedging, uniform rhythm, throat-clearing - without touching the evidence. The Copy Editor also commissions the **Artist** for any passage better served by a figure or diagram - a timeline, a process, a relationship, numbers that trend (prompt: `references/artist.md`). If your harness does not allow a subagent to spawn subagents, run the Artist commissions yourself and hand the figures back to the Copy Editor to place.
 
 ### Phase 6 - Publisher approval
 

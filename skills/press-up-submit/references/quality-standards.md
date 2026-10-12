@@ -23,3 +23,5 @@ Non-negotiable standards applied at every gate. The Editor enforces these; every
 10. **The publisher's approval is final.** The user's approval is the last editorial gate, and their change requests restart the loop through the newsroom. No piece is delivered as final without it.
 
 11. **The rendered artifact must be correctly typeset.** The deliverable is checked in its rendered form - no clipped figures, no broken images, no orphaned headings, citations and figures intact - and re-rendered until the layout is right.
+
+12. **No AI-slop smells.** The delivered prose carries no tired AI words (delve, tapestry, pivotal, moreover...), no formulaic sentence shapes, no throat-clearing, no hedging, no em dashes, and a varied rhythm. The Copy Editor rewrites until it reads like a person wrote it.

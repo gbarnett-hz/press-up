@@ -1,6 +1,6 @@
 # Press-Up
 
-A skills.sh installable skill that turns your agent into an editorial newsroom: an **Editor** (your agent) commissions a piece, a **Journalist** subagent directs a panel of four to five **Research** subagents (one always adversarial), drafts the article to your specified word count with a citation marker on every factual statement, then revises it against an **Adversarial Reviewer** that attacks unsourced claims, and finishes with a **Copy Editor** that commissions an **Artist** for diagrams where a passage is better shown than told. After you approve, the Editor renders the piece with **Pandoc** in your chosen format - markdown, HTML, DOCX, or PDF - and a **Typesetter** subagent checks and fixes the layout until the artifact is correctly typeset.
+A skills.sh installable skill that turns your agent into an editorial newsroom: an **Editor** (your agent) commissions a piece, a **Journalist** subagent directs a panel of four to five **Research** subagents (one always adversarial), drafts the article to your specified word count with a numbered citation reference (Chicago notes style) on every factual statement, then revises it against an **Adversarial Reviewer** that attacks unsourced claims, and finishes with a **Copy Editor** that commissions an **Artist** for diagrams where a passage is better shown than told. After you approve, the Editor renders the piece with **Pandoc** in your chosen format - markdown, HTML, DOCX, or PDF - and a **Typesetter** subagent checks and fixes the layout until the artifact is correctly typeset.
 
 ## Install
 
@@ -32,7 +32,7 @@ The Editor will confirm the commission (subject, word count, audience, tone), th
 
 After approval, the Editor asks which format you want: **markdown** (the source, essentially untouched), **HTML**, **DOCX**, or **PDF**. The Typesetter renders it with Pandoc - the diagram source compiles to vector PDF for PDF output, SVG for HTML, high-resolution PNG for DOCX, and stays fenced in markdown - then inspects the rendered artifact and fixes any layout problems, re-rendering until it is correctly typeset.
 
-The finished document is delivered in your chosen format with a numbered sources list, plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
+The finished document is delivered in your chosen format with a numbered References section (Chicago notes style - superscript numerals in the text, no inline links), plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
 
 ### Example
 
@@ -54,11 +54,11 @@ The Editor confirms the assignment:
 >
 > Approve, or tell me what to change?
 
-The newsroom then runs: five researchers work in parallel (one builds the strongest case *against* the depaving boom), the Journalist drafts with a citation marker on every factual statement, the Adversarial Reviewer attacks uncited claims, and the Copy Editor commissions a timeline figure of the depaving wave. You get the piece for approval:
+The newsroom then runs: five researchers work in parallel (one builds the strongest case *against* the depaving boom), the Journalist drafts with a numbered citation reference on every factual statement, the Adversarial Reviewer attacks uncited claims, and the Copy Editor commissions a timeline figure of the depaving wave. You get the piece for approval:
 
 > **Draft for your approval — 1,512 words**
 > ## The Great Unpaving
-> …The city of Bottrop broke its first asphalt in 2019 [3]… critics say the gains are mostly symbolic — one study found only 12% of depaved lots measurably cool their streets [7]…
+> …The city of Bottrop broke its first asphalt in 2019³… critics say the gains are mostly symbolic — one study found only 12% of depaved lots measurably cool their streets⁷…
 >
 > Approve, or ask for changes?
 
@@ -78,6 +78,7 @@ skills/press-up-submit/
 └── references/
     ├── commission.md            # How to write the commission brief
     ├── angle-menu.md            # The five research angles
+    ├── citation-style.md        # Chicago notes style: numerals + References section
     ├── quality-standards.md     # Non-negotiable standards
     ├── journalist.md            # Subagent prompt: the Journalist
     ├── researcher.md            # Subagent prompt: a Researcher

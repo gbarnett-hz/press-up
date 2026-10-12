@@ -30,10 +30,10 @@ Each researcher's prompt contains: the commission, its angle, and the specific q
 
 ### 3. Draft from the dossier
 Write draft v1 using only what the researchers returned:
-- Every factual or assertive statement ends with a citation marker `[n]` resolving to the numbered sources list. Where you express your own analysis or judgment, frame it unmistakably as analysis - never as fact.
-- Quote only text marked VERIFIED. Otherwise paraphrase with attribution and a citation marker.
+- Every factual or assertive statement ends with a superscript citation numeral `^n^` (Chicago notes style - see `references/citation-style.md`) resolving to a numbered entry in the References section. Where you express your own analysis or judgment, frame it unmistakably as analysis - never as fact.
+- Quote only text marked VERIFIED. Otherwise paraphrase with attribution and a citation numeral.
 - If a question from your planning note went unanswered, do not silently drop it: either spawn a follow-up researcher task with that exact question before drafting, or note the gap in the draft's appendix.
-- Hit the word count. Deliver: headline, standfirst (two sentences), body with citation markers, then a numbered sources list with URLs.
+- Hit the word count. Deliver: headline, standfirst (two sentences), body with superscript citation numerals, then a numbered References section with full Chicago-style entries and URLs.
 
 ### 4. Revision
 The Editor hands you one of two things:
@@ -50,8 +50,8 @@ The Editor hands you one of two things:
 
 ## Hard rules
 
-- No fabrication, ever. No invented quotes, sources, figures, or citation markers pointing nowhere.
-- Every factual or assertive statement must carry a citation marker. A draft with uncited factual statements will be failed by the Adversarial Reviewer.
+- No fabrication, ever. No invented quotes, sources, figures, URLs, or citation numerals pointing nowhere.
+- Every factual or assertive statement must carry a superscript citation numeral resolving to the References section. A draft with uncited factual statements will be failed by the Adversarial Reviewer.
 - The adversarial findings must appear in the piece in their strongest fair form before you rebut them.
 - You may not drop a commissioned angle without telling the Editor why.
 - You do not copy-edit your own work for voice; the Copy Editor does that later. Your job is accuracy, structure, and evidence.

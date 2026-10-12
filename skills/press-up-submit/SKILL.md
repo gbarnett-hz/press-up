@@ -1,6 +1,6 @@
 ---
 name: press-up-submit
-description: 'Orchestrates a multi-agent newsroom to produce well-researched, fully cited, publication-ready documents. The hosting agent acts as Editor - the user invokes /press-up-submit with an idea for the document and a word limit, a Journalist subagent directs a panel of four to five Research subagents (each on a distinct angle, at least one adversarial), drafts the article with a citation marker on every factual statement, then revises against an Adversarial Reviewer that attacks unsourced claims and a Copy Editor that commissions an Artist for diagrams delivered as fenced Graphviz DOT, until the publisher (the user) gives final approval. After approval the Editor asks for the delivery format - markdown, HTML, DOCX, or PDF - renders it with Pandoc, and a Typesetter subagent checks and fixes the layout until the artifact is correctly typeset. Use when the user invokes /press-up-submit, addresses you as "Editor", or asks for a researched article, feature, report, explainer, profile, or essay of a specified length.'
+description: 'Orchestrates a multi-agent newsroom to produce well-researched, fully cited, publication-ready documents. The hosting agent acts as Editor - the user invokes /press-up-submit with an idea for the document and a word limit, a Journalist subagent directs a panel of four to five Research subagents (each on a distinct angle, at least one adversarial), drafts the article with a numbered citation on every factual statement, then revises against an Adversarial Reviewer that attacks unsourced claims and a Copy Editor that commissions an Artist for diagrams delivered as fenced Graphviz DOT, until the publisher (the user) gives final approval. After approval the Editor asks for the delivery format - markdown, HTML, DOCX, or PDF - renders it with Pandoc, and a Typesetter subagent checks and fixes the layout until the artifact is correctly typeset. Use when the user invokes /press-up-submit, addresses you as "Editor", or asks for a researched article, feature, report, explainer, profile, or essay of a specified length.'
 license: MIT
 compatibility: Requires a subagent/task tool (Task in Claude Code, task in opencode, or the harness equivalent) and internet access for the research phase. The render phase additionally needs pandoc 3.x, graphviz, and - for PDF - a LaTeX engine such as xelatex.
 metadata:
@@ -46,11 +46,11 @@ Run the phases in order. Pause for the user at the checkpoints marked below (com
 
 ### Phase 2 - First draft
 
-The Journalist drafts the piece from the dossier at the commissioned word count and returns draft v1 with a sources list. It requests follow-up research itself before drafting if the dossier is thin (see `references/journalist.md`).
+The Journalist drafts the piece from the dossier at the commissioned word count and returns draft v1 with a numbered References section. It requests follow-up research itself before drafting if the dossier is thin (see `references/journalist.md`).
 
 ### Phase 3 - Adversarial review
 
-Spawn the **Adversarial Reviewer** subagent with the commission, the draft, and the dossier (prompt: `references/critical-reviewer.md`). The reviewer is hostile by design: it presumes every claim is wrong until its evidence is produced and sweeps the draft for uncited statements - every factual statement must carry a citation marker resolving to a source with a URL. It never rewrites. It returns a verdict - accept or revise - and an Uncited-statements / MUST-FIX / SHOULD-FIX / NICE-TO-HAVE report. MUST-FIX research gaps are phrased as exact questions for the Researchers.
+Spawn the **Adversarial Reviewer** subagent with the commission, the draft, and the dossier (prompt: `references/critical-reviewer.md`). The reviewer is hostile by design: it presumes every claim is wrong until its evidence is produced and sweeps the draft for uncited statements - every factual statement must carry a superscript citation numeral resolving to a References entry with a URL (Chicago notes style - see `references/citation-style.md`). It never rewrites. It returns a verdict - accept or revise - and an Uncited-statements / MUST-FIX / SHOULD-FIX / NICE-TO-HAVE report. MUST-FIX research gaps are phrased as exact questions for the Researchers.
 
 ### Phase 4 - Revision loop
 
@@ -96,7 +96,7 @@ The render is whatever the publisher decided when they submitted the article - b
 
 - **Spawn tool:** use your harness's subagent mechanism (Claude Code: `Task`; opencode: `task`; others: their equivalent). Researcher subagents run in parallel - issue all their tasks in one message.
 - **Resume, don't respawn:** for the Journalist, the Adversarial Reviewer, and the Typesetter across their loops, resume the existing subagent with its task id so it keeps its memory of the history.
-- **Prompt templates:** each role file under `references/` is a complete subagent prompt with `{{PLACEHOLDERS}}` - `journalist.md`, `researcher.md`, `adversarial-researcher.md`, `critical-reviewer.md`, `copy-editor.md`, `artist.md`, `typesetter.md`. Fill every placeholder before sending; never send a placeholder. Pass the commission brief in full with every prompt.
+- **Prompt templates:** each role file under `references/` is a complete subagent prompt with `{{PLACEHOLDERS}}` - `journalist.md`, `researcher.md`, `adversarial-researcher.md`, `critical-reviewer.md`, `copy-editor.md`, `artist.md`, `typesetter.md`. Fill every placeholder before sending; never send a placeholder. Pass the commission brief in full with every prompt, and pass `references/citation-style.md` with every prompt that handles citations.
 - **Context discipline:** subagents get the commission and their specific brief. Do not paste previous drafts into Researcher prompts; give them questions, not answers.
 
 ## Editor's rules

@@ -33,7 +33,7 @@ Use the **pandoc-ext/diagram** Lua filter (`diagram.lua`), which handles this au
 
 ## Render commands
 
-- **markdown:** no conversion. Light structural check only (fences balanced, captions present, citation markers resolve to the sources list).
+- **markdown:** no conversion. Light structural check only (fences balanced, captions present, citation numerals resolve to the References section).
 - **HTML:** `pandoc source.md -f markdown -t html5 -s --embed-resources --lua-filter diagram.lua -o <slug>.html` - plus a style header if the commission calls for one.
 - **PDF:** `pandoc source.md -f markdown -t pdf --pdf-engine=xelatex --lua-filter diagram.lua -o <slug>.pdf` - set sensible page geometry (margins, page size) from the commission.
 - **DOCX:** `pandoc source.md -f markdown -t docx --lua-filter diagram.lua -o <slug>.docx` - use a `--reference-doc` if the commission specifies one.
@@ -44,8 +44,8 @@ Inspect the rendered artifact, not just the source:
 
 - **PDF:** `pdfinfo` (pages, page size), `pdftotext` (text integrity), then rasterize pages (`pdftoppm -png -r 100`) and view them: no overflowing or clipped figures, no orphaned headings, no bad page breaks, figures legible, title page and metadata present.
 - **HTML:** read the generated file: images embedded (data URIs), no broken references, headings hierarchy intact, captions under figures.
-- **DOCX:** unzip and confirm `word/media/` contains real PNGs; round-trip check with `pandoc -f docx -t plain` for text integrity; confirm captions and the sources list survived.
-- **All formats:** every citation marker resolves to the sources list; every figure is present and legible; the word count of the body text is unchanged by rendering.
+- **DOCX:** unzip and confirm `word/media/` contains real PNGs; round-trip check with `pandoc -f docx -t plain` for text integrity; confirm captions and the References section survived.
+- **All formats:** every superscript citation numeral renders as superscript and resolves to an entry in the References section; every figure is present and legible; the word count of the body text is unchanged by rendering.
 
 ## Fixing what is wrong
 

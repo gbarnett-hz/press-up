@@ -2,15 +2,15 @@
 
 Non-negotiable standards applied at every gate. The Editor enforces these; every subagent works under them.
 
-1. **No fabrication.** Every factual or assertive statement in the piece must carry a citation marker `[n]` that resolves to a numbered source with a URL in the sources list. A statement that cannot be sourced is either dropped or explicitly framed as the author's analysis. Uncited factual statements automatically fail adversarial review.
+1. **No fabrication.** Every factual or assertive statement in the piece must carry a superscript citation numeral (Chicago notes style) that resolves to a numbered entry with a URL in the References section. A statement that cannot be sourced is either dropped or explicitly framed as the author's analysis. Uncited factual statements automatically fail adversarial review.
 
-2. **Verbatim quotes only from VERIFIED output.** The Journalist may quote only text a researcher marked VERIFIED (read on the page itself). Paraphrase is always allowed with attribution and a citation marker; manufactured quotation is never allowed.
+2. **Verbatim quotes only from VERIFIED output.** The Journalist may quote only text a researcher marked VERIFIED (read on the page itself). Paraphrase is always allowed with attribution and a citation numeral; manufactured quotation is never allowed.
 
 3. **The adversarial view must be addressed.** The piece must state the strongest case against its thesis fairly, in its own words, before rebutting it. Strawmanning fails review.
 
 4. **Word count.** Body text between the target and +5% over, never under. The Copy Editor verifies the final count; the Adversarial Reviewer counts every draft.
 
-5. **Sources listed and resolvable.** The delivered piece ends with a numbered sources list; every citation marker in the body resolves to it, and every entry carries a URL the reader can follow.
+5. **References listed and resolvable, Chicago style.** The piece ends with a numbered References section: every citation numeral in the body resolves to it, entries are full notes in order of first appearance, and every entry carries a URL the reader can follow. No inline links in the body.
 
 6. **Figures tell only sourced truth.** A figure may visualize only data that appears in the research dossier. No invented numbers, shapes, or timelines. Every figure carries a caption with its source(s).
 

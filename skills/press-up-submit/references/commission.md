@@ -13,12 +13,12 @@ COMMISSION
 - User's position (if any): <the publisher's stance, or "no position - follow the evidence">
 - Deadline/scope: <single session by default>
 - Research angles (from the angle menu): <list of 4-5, one per researcher>
-- Definition of done: <piece meets quality standards, word count, sources list, adversarial view addressed>
+- Definition of done: <piece meets quality standards, word count, References section, adversarial view addressed>
 ```
 
 ## Commissioning rules
 
-1. The word count is body text only. Headline and sources list do not count toward it.
+1. The word count is body text only. Headline and the References section do not count toward it.
 2. If the user has a position, the adversarial researcher must pressure-test that position specifically - the newsroom's job is not to flatter the publisher.
 3. If the user has no position, the Editor notes that the piece must present the strongest available case on both sides and let the evidence decide the thesis.
 4. The angle list is a plan, not a promise: the Journalist may rebalance angles once research reveals what the story actually needs, but may never drop the adversarial angle without your explicit say-so.

@@ -1,10 +1,10 @@
 ---
-name: press-up
-description: Orchestrates a multi-agent newsroom to produce well-researched, fully cited, publication-ready articles. The hosting agent acts as Editor: the user commissions a piece by stating a subject and a target word count, a Journalist subagent directs a panel of four to five Research subagents (each on a distinct angle, at least one adversarial), drafts the article with a citation marker on every factual statement, then revises against an Adversarial Reviewer that attacks unsourced claims and a Copy Editor that commissions an Artist for figures and diagrams where they serve the story. Use when the user addresses you as "Editor", asks for a researched article, feature, report, explainer, profile, or essay of a specified length, or wants a rigorous multi-draft editorial writing process.
+name: press-up-submit
+description: Orchestrates a multi-agent newsroom to produce well-researched, fully cited, publication-ready articles. The hosting agent acts as Editor: the user invokes /press-up-submit with an idea for the document and a word limit, a Journalist subagent directs a panel of four to five Research subagents (each on a distinct angle, at least one adversarial), drafts the article with a citation marker on every factual statement, then revises against an Adversarial Reviewer that attacks unsourced claims and a Copy Editor that commissions an Artist for figures and diagrams where they serve the story, until the publisher (the user) gives final approval. Use when the user invokes /press-up-submit, addresses you as "Editor", or asks for a researched article, feature, report, explainer, profile, or essay of a specified length.
 license: MIT
 compatibility: Requires a subagent/task tool (Task in Claude Code, task in opencode, or the harness equivalent) and internet access for the research phase.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Press-Up: the editorial newsroom
@@ -24,7 +24,7 @@ You are the **Editor** of a small, rigorous newsroom. You do not write the piece
 
 ## Trigger
 
-The user addresses you as "Editor" and gives a subject and usually a word count - e.g. "Editor, this is the subject I want to write about, and this is the number of words I want to use." Treat any request for a researched piece of a stated length (article, feature, report, explainer, essay, profile) as a commission.
+The user invokes `/press-up-submit` with the idea of the document to write and the word limit, e.g. `/press-up-submit Why German cities are depaving their car parks, 1,500 words` - or addresses you as "Editor" with a subject and a word count. Treat any request for a researched piece of a stated length (article, feature, report, explainer, essay, profile) as a commission.
 
 ## The phases
 
@@ -32,7 +32,7 @@ Run the phases in order. Pause for the user at the checkpoints marked below (com
 
 ### Phase 0 - Commission
 
-1. Extract the **subject** and **target word count** from the user's message. If either is missing, ask before proceeding.
+1. Present the assignment to the user: the **idea** (subject) and the **word limit** taken from the command, and what you intend to do with them. If either is missing, ask before proceeding.
 2. If not stated, ask once, briefly: audience, tone, format (article / essay / report / explainer), and whether the user holds a position they want you to pressure-test. Never ask more than these.
 3. Write the commission brief following `references/commission.md`. Assign the research angles from `references/angle-menu.md`.
 4. **Checkpoint:** show the brief to the user, keep it short. Proceed on approval; let them amend it.

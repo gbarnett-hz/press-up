@@ -5,37 +5,69 @@ A skills.sh installable skill that turns your agent into an editorial newsroom: 
 ## Install
 
 ```bash
-# From GitHub (once published)
-npx skills add <owner>/press-up
+# From GitHub
+npx skills add gbarnett-hz/press-up
 
-# Or directly from this repository, by URL
-npx skills add https://github.com/<owner>/press-up
+# Or by full URL
+npx skills add https://github.com/gbarnett-hz/press-up
 
 # Or from a local path while you develop it
 npx skills add /path/to/press-up
 
 # Install just this skill from a multi-skill repo
-npx skills add <owner>/press-up --skill press-up
+npx skills add gbarnett-hz/press-up --skill press-up-submit
 ```
 
-The skill lives at `skills/press-up/SKILL.md`, which the skills.sh CLI discovers automatically.
+The skill lives at `skills/press-up-submit/SKILL.md`, which the skills.sh CLI discovers automatically.
 
 ## Use
 
-Talk to your agent as the Editor:
+Invoke the skill as a slash command with the idea of the document and the word limit:
 
-> Editor, I want a 1,500-word article on why German cities are depaving their car parks. I don't have a position yet — pressure-test whatever you find.
+> /press-up-submit Why German cities are depaving their car parks, 1,500 words
 
-> Editor, this is the subject: the collapse of the European battery start-up Northvolt. I want 2,000 words.
+> /press-up-submit The collapse of the European battery start-up Northvolt, 2,000 words
 
 The Editor will confirm the commission (subject, word count, audience, tone), then run the newsroom. Every piece goes through: commission → parallel research (evidence, history, voices, adversarial, stakes) → first draft with cited statements → adversarial review (uncited claims and weak evidence fail the draft) → revision loops (the Journalist sends follow-up questions back to the Researchers when the reviewer demands more) → copy edit and illustration (figures for passages better shown than told) → **publisher approval**. The piece comes to you for final sign-off; if you ask for changes, the Editor dispatches them to the Journalist and the loop runs again until you approve.
 
 The finished article is delivered as a Markdown file with a numbered sources list, plus an editorial memo covering word count, rounds taken, change cycles, and remaining uncertainties.
 
+### Example
+
+You type:
+
+```
+/press-up-submit Why German cities are depaving their car parks, 1,500 words
+```
+
+The Editor confirms the assignment:
+
+> **Commission**
+> - Slug: german-depaving
+> - Subject: Why German cities are removing asphalt from car parks and how the movement is spreading
+> - Format: article · Target: 1,500 words (never under, up to +5%)
+> - Audience: general reader, no prior knowledge
+> - Tone: measured, curious
+> - Angles: evidence & data, history & context, voices & players, adversarial view, stakes & futures
+>
+> Approve, or tell me what to change?
+
+The newsroom then runs: five researchers work in parallel (one builds the strongest case *against* the depaving boom), the Journalist drafts with a citation marker on every factual statement, the Adversarial Reviewer attacks uncited claims, and the Copy Editor commissions a timeline figure of the depaving wave. You get the piece for approval:
+
+> **Draft for your approval — 1,512 words**
+> ## The Great Unpaving
+> …The city of Bottrop broke its first asphalt in 2019 [3]… critics say the gains are mostly symbolic — one study found only 12% of depaved lots measurably cool their streets [7]…
+>
+> Approve, or ask for changes?
+
+You approve, and the Editor writes `german-depaving.md` plus `figures/` and closes with the memo:
+
+> **Editorial memo** — 1,512/1,500 words · 2 reviewer rounds · 1 change cycle · 23 sources · remaining uncertainty: none of the German studies isolate depaving from wider greening programs.
+
 ## Structure
 
 ```
-skills/press-up/
+skills/press-up-submit/
 ├── SKILL.md                     # Editor's operating manual
 └── references/
     ├── commission.md            # How to write the commission brief
